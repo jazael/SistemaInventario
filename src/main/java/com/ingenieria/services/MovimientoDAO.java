@@ -96,6 +96,11 @@ public class MovimientoDAO {
 
             if (rowsAffected > 0) {
                 isUpdated = true;
+                
+                boolean egreso = tipomovimiento.equals("EGRESO");
+                
+                // Actualizar stock
+                this.productoDAO.actualizarStock(codigoproducto, Double.valueOf(cantidad), egreso);
             }
 
             closeStatement(stmt);
