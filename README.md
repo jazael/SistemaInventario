@@ -8,7 +8,7 @@ Utiliza **PostgreSQL** como base de datos y está desarrollado en **Java** con N
 Antes de comenzar, asegúrate de tener los siguientes elementos instalados en tu sistema:
 
 - [NetBeans IDE](https://netbeans.apache.org/download/index.html)
-- [Java Development Kit (JDK) 8+](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- [Java Development Kit (JDK) 20+](https://www.oracle.com/java/technologies/javase/jdk20-archive-downloads.html)
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [JDBC Driver para PostgreSQL](https://jdbc.postgresql.org/download.html)
 
