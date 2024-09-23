@@ -26,9 +26,11 @@ import javax.swing.table.DefaultTableModel;
 public class MovimientoDAO {
 
     private final Connection connection;
+    private final ProductoDAO productoDAO;
 
     public MovimientoDAO() {
         this.connection = getConnection();
+        this.productoDAO = new ProductoDAO();
     }
 
     public Movimiento insertarMovimiento(Integer codigoproducto, String tipomovimiento, String cantidad, String fecha, String responsable) {
@@ -56,6 +58,11 @@ public class MovimientoDAO {
                 movimiento.setCantidad(rs.getDouble("cantidad"));
                 movimiento.setFecha(rs.getString("fecha"));
                 movimiento.setResponsable(rs.getString("responsable"));
+                
+                boolean egreso = tipomovimiento.equals("EGRESO");
+                
+                // Actualizar stock
+                this.productoDAO.actualizarStock(codigoproducto, Double.valueOf(cantidad), egreso);
             }
 
             closeStatement(stmt);

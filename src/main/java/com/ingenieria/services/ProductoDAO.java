@@ -68,6 +68,43 @@ public class ProductoDAO {
         return producto;
     }
 
+    public boolean actualizarStock(Integer id, Double stockIngresado, boolean egreso) {
+        boolean isUpdated = false;
+        String selectQuery = "SELECT stock FROM producto WHERE id = ?";
+        String updateQuery = "UPDATE producto SET stock = ? WHERE id = ?";
+
+        try {
+            PreparedStatement selectStmt = this.connection.prepareStatement(selectQuery);
+            selectStmt.setInt(1, id);
+
+            ResultSet resultSet = selectStmt.executeQuery();
+            double stockActual = 0.0;
+
+            if (resultSet.next()) {
+                stockActual = resultSet.getDouble("stock");
+            }
+
+            double nuevoTotalStock = egreso ? (stockActual - stockIngresado) : (stockActual + stockIngresado);
+
+            PreparedStatement updateStmt = this.connection.prepareStatement(updateQuery);
+            updateStmt.setDouble(1, nuevoTotalStock);
+            updateStmt.setInt(2, id);
+
+            int rowsAffected = updateStmt.executeUpdate();
+            if (rowsAffected > 0) {
+                isUpdated = true;
+            }
+
+            closeStatement(selectStmt);
+            closeStatement(updateStmt);
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            throw new DatabaseConnectException(e.getMessage());
+        }
+
+        return isUpdated;
+    }
+
     public boolean editarProducto(Integer id, String nombre, String descripcion, String precio, String stock, String unidadMedida) {
         boolean isUpdated = false;
         String query = "UPDATE producto SET nombre = ?, descripcion = ?, precio = ?, stock = ?, unidadmedida = ? WHERE id = ?";
