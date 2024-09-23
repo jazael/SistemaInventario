@@ -4,19 +4,34 @@
  */
 package com.ingenieria.controllers;
 
+import com.ingenieria.managementdb.ConnectionDriver;
 import com.ingenieria.models.DTOProductoJComboBox;
 import com.ingenieria.models.Movimiento;
 import com.ingenieria.models.Producto;
 import com.ingenieria.services.MovimientoDAO;
 import com.ingenieria.services.ProductoDAO;
 import java.awt.HeadlessException;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -145,5 +160,33 @@ public class MovimientosController {
             JOptionPane.showMessageDialog(null, "Ocurrio un error al carga los datos del movimiento");
         }
 
+    }
+    
+    public JasperPrint reporteProducto() {
+        URL resourceUrl = ProductoController.class.getResource("/reports/Movimientos.jasper");
+        File reporte = null;
+        
+        try {
+            reporte = new File(resourceUrl.toURI());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (!reporte.exists()) {
+            JOptionPane.showMessageDialog(null, "No existe archivo");
+            return null;
+        }
+
+        try {
+            InputStream is = new BufferedInputStream(new FileInputStream(reporte.getAbsoluteFile()));
+            JasperReport jr = (JasperReport) JRLoader.loadObject(is);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, ConnectionDriver.getConnection());
+            return jp;
+        } catch (FileNotFoundException | JRException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+        
+        
+        return null;
     }
 }

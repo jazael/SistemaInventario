@@ -136,7 +136,6 @@ public class MovimientoDAO {
                            movimiento.responsable,
                            producto.id AS producto_id,
                            producto.nombre AS producto_nombre,
-                           producto.descripcion AS producto_descripcion,
                            producto.precio,
                            producto.stock,
                            producto.unidadmedida
@@ -149,7 +148,7 @@ public class MovimientoDAO {
                        WHERE 
                            movimiento.estado = true 
                            AND producto.estado = true;""";
-        String[] datos = new String[11];
+        String[] datos = new String[10];
 
         try {
             Statement stmt = this.connection.createStatement();
@@ -166,7 +165,6 @@ public class MovimientoDAO {
                 datos[7] = rs.getString(8);
                 datos[8] = rs.getString(9);
                 datos[9] = rs.getString(10);
-                datos[10] = rs.getString(11);
 
                 modeloMovimientos.addRow(datos);
             }

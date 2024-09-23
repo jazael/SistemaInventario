@@ -8,6 +8,7 @@ package com.ingenieria.views;
  *
  * @author Usuario
  */
+import com.ingenieria.controllers.MovimientosController;
 import com.ingenieria.controllers.ProductoController;
 import java.awt.Graphics;
 import java.util.Locale;
@@ -112,6 +113,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu2.add(jSeparator4);
 
         jMenuItem6.setText("Movimientos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -153,7 +159,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProductoController productoController= new ProductoController();
         JasperPrint jp = productoController.reporteProducto();
-        //JasperViewer.viewReport(jp);
         JasperViewer.viewReport(jp, false, Locale.ENGLISH);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -163,6 +168,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         movimientos.setModal(true);
         movimientos.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        MovimientosController movimientosController= new MovimientosController();
+        JasperPrint jp = movimientosController.reporteProducto();
+        JasperViewer.viewReport(jp, false, Locale.ENGLISH);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,7 @@
 /Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/views/Login.java
 /Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/controllers/PersonaController.java
 /Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/services/MovimientoDAO.java
+/Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/utilsmanager/JOptionPaneUtil.java
 /Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/controllers/ProductoController.java
 /Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/models/Persona.java
 /Users/miguelfaubla/NetBeansProjects/SistemaInventario/src/main/java/com/ingenieria/models/DTOProductoJComboBox.java

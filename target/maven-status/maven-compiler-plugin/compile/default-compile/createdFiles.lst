@@ -1,4 +1,5 @@
 com/ingenieria/views/MenuPrincipal$3.class
+com/ingenieria/utilsmanager/JOptionPaneUtil.class
 com/ingenieria/views/Productos$2.class
 com/ingenieria/controllers/SecurityAuthController.class
 com/ingenieria/models/Usuario.class
@@ -41,6 +42,7 @@ com/ingenieria/views/Usuarios.class
 com/ingenieria/controllers/PersonaController.class
 com/ingenieria/services/ProductoDAO.class
 com/ingenieria/models/DTOProductoJComboBox.class
+com/ingenieria/views/MenuPrincipal$7.class
 com/ingenieria/views/Productos$6.class
 com/ingenieria/views/Usuarios$1.class
 com/ingenieria/views/Movimientos$1.class
